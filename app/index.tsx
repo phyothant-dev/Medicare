@@ -27,7 +27,6 @@ export default function SplashScreen() {
         useNativeDriver: true,
       }),
     ]).start(() => {
-      console.log('Animation Complete! Navigating to Home.');
       router.replace('/home');
     });
   }, [fadeAnim, scaleAnim, router]);
