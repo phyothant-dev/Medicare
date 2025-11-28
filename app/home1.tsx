@@ -4,15 +4,15 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Index = () => {
+const Home = () => {
   return (
     <SafeAreaView>
       
@@ -100,7 +100,7 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;
 
 const styles = StyleSheet.create({
   container: {
