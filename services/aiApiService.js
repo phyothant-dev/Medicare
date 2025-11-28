@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // NOTE: Your key is exposed here. In a real app, load this from a secure .env file.
-const OPENROUTER_API_KEY = "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"; 
+const OPENROUTER_API_KEY = "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"; 
 
 export async function getHFResponse(prompt) {
   try {
