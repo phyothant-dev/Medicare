@@ -38,5 +38,17 @@
   "immunity_section_priority": "Seasonal Priorities",
   "immunity_description_priority": "Implement these steps specific to the current season to maximize defense.",
   "immunity_section_general": "General Wellness",
-  "immunity_description_general": "Foundational habits that support a strong immune system all year."
+  "immunity_description_general": "Foundational habits that support a strong immune system all year.",
+  
+  
+  "alert_location_denied": "Location permission denied",
+  "loading_hospitals_text": "Finding nearby hospitals & clinics...",
+  "no_hospitals_found": "No hospitals or clinics found nearby.",
+  "title_nearby_facilities": "Nearby Hospitals & Clinics",
+  "default_hospital_name": "Hospital/Clinic",
+  "unknown_type": "Unknown type",
+  "distance_unit": "km away",
+  "map_popup_you_are_here": "You are here",
+  "map_popup_nearest_hospital": "Nearest Hospital",
+  "map_popup_hospital_clinic": "Hospital/Clinic"
 }

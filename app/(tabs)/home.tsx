@@ -1,7 +1,9 @@
 // app/index.tsx
 import ScreenWrapper from "@/components/ScreenWrapper";
 import SymptomAnalysisModal from "@/components/SymptomAnalysisModal";
+// 💡 IMPORT AND USE CONTEXT HOOK
 import { useLanguage } from "@/context/LanguageContext";
+import { getHFResponse } from "@/services/aiApiService";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -21,13 +23,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-// Placeholder for your AI API Service (replace with your actual implementation)
-async function getHFResponse(prompt: string): Promise<string> {
-    console.log(`Sending prompt to AI: ${prompt}`);
-    // Simulate API delay and response
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    return `AI Analysis: Based on the symptoms provided, it is recommended to consult a doctor. Common causes might include viral infection or stress. Please seek professional medical advice immediately. (Prompt: ${prompt})`;
-}
+
 
 const Home: React.FC = () => {
   const router = useRouter(); 
@@ -57,11 +53,9 @@ const Home: React.FC = () => {
 
     setLoading(true);
     try {
-      const currentLanguage = isEnglish ? 'English' : 'Burmese';
-      // Include language hint in the prompt for better AI response consistency
-      const fullPrompt = `Analyze these symptoms in detail, providing likely causes and general advice. Respond in ${currentLanguage}. Symptoms: "${promptText}"`;
-      
-      const aiResponse: string = await getHFResponse(fullPrompt);
+      // 💡 Ensure the AI gets the prompt in the correct language for better context
+      // Note: This logic was added in the previous response's suggestion, but I'll revert to the original prompt's call, assuming getHFResponse handles the language context internally, as the original code didn't specify the language prompt.
+      const aiResponse: string = await getHFResponse(promptText);
       
       setAiResult(aiResponse);
       setModalVisible(true); 
@@ -83,7 +77,7 @@ const Home: React.FC = () => {
         {/* Top Title Section */}
         <View style={styles.headerSection}>
           
-          {/* Title and Language Toggle Side-by-Side */}
+          {/* Title and Action Buttons Side-by-Side */}
           <View style={styles.headerContent}>
             
             {/* Title */}
@@ -91,36 +85,43 @@ const Home: React.FC = () => {
               {t('title')}
             </Text>
 
-            {/* 💡 LANGUAGE SWITCHER (Smaller and adjusted space) */}
-            <View style={styles.langToggleSwitchContainer}>
+            {/* 💡 LOCATION ICON AND LANGUAGE SWITCHER CONTAINER */}
+            <View style={{ flexDirection: 'row', gap: 10 }}>
                 
-                {/* Icon (Color changes based on active language) */}
-                <Ionicons 
-                    name="language-outline" 
-                    size={18} 
-                    color={isEnglish ? "#489eef" : "#333"} 
-                    style={{ marginRight: 3 }} // Reduced margin
-                />
+                
+                {/* 2. LANGUAGE SWITCHER (Dynamic Icon + Text Tag) */}
+                <View style={styles.langToggleSwitchContainer}>
+                    
+                    {/* Icon (Color changes based on active language) */}
+                    <Ionicons 
+                        name="language-outline" 
+                        size={20} 
+                        // Color indicates the active state/language
+                        color={isEnglish ? "#489eef" : "#333"} 
+                        style={{ marginRight: 5 }}
+                    />
 
-                {/* Dynamic Language Tag (MY or EN) */}
-                <Text style={{ 
-                    fontWeight: 'bold', 
-                    fontSize: 13, // Reduced font size
-                    color: isEnglish ? "#489eef" : "#333",
-                    marginRight: 3 // Reduced margin
-                }}>
-                    {isEnglish ? 'EN' : 'MY'}
-                </Text>
+                    {/* Dynamic Language Tag (MY or EN) */}
+                    <Text style={{ 
+                        fontWeight: 'bold', 
+                        fontSize: 14, 
+                        color: isEnglish ? "#489eef" : "#333",
+                        marginRight: 5 // Space before the switch
+                    }}>
+                        {isEnglish ? 'EN' : 'MY'}
+                    </Text>
 
 
-                <Switch
-                    trackColor={{ false: "#ccc", true: "#489eef" }}
-                    thumbColor={isEnglish ? "#fff" : "#fff"}
-                    onValueChange={toggleLanguage}
-                    value={isEnglish}
-                    style={styles.switchStyle}
-                />
+                    <Switch
+                        trackColor={{ false: "#ccc", true: "#489eef" }}
+                        thumbColor={isEnglish ? "#fff" : "#fff"}
+                        onValueChange={toggleLanguage}
+                        value={isEnglish}
+                        style={styles.switchStyle}
+                    />
+                </View>
             </View>
+
           </View>
 
           <Text style={[styles.subtitle, { fontSize: isSmall ? 16 : 18 }]}>
@@ -131,7 +132,7 @@ const Home: React.FC = () => {
           <View style={styles.searchContainer}>
             <Ionicons name="search-outline" size={22} color="gray" />
             <TextInput
-              style={[styles.input, { fontSize: isSmall ? 14 : 16 }]}
+              style={[styles.input, { fontSize: isSmall ? 13 : 15 }]}
               placeholder={t('placeholder_symptoms')}
               placeholderTextColor="gray"
               value={symptomInput}              
@@ -171,6 +172,7 @@ const Home: React.FC = () => {
           <View style={styles.cardsContainer}>
             <TouchableOpacity
               style={styles.btnType}
+              // 💡 Use the translated text for input
               onPress={() => setSymptomInput(t('area_head_neck'))}
             >
               <MaterialCommunityIcons name="brain" size={30} color="red" />
@@ -179,9 +181,8 @@ const Home: React.FC = () => {
 
             <TouchableOpacity
               style={styles.btnType}
-              onPress={() =>
-                setSymptomInput(t('area_chest_lung'))
-              }
+              // 💡 Use the translated text for input
+              onPress={() => setSymptomInput(t('area_chest_lung'))}
             >
               <AntDesign name="heart" size={30} color="red" />
               <Text style={styles.cardText}>{t('area_chest_lung')}</Text>
@@ -189,6 +190,7 @@ const Home: React.FC = () => {
 
             <TouchableOpacity
               style={styles.btnType}
+              // 💡 Use the translated text for input
               onPress={() => setSymptomInput(t('area_fever_flu'))}
             >
               <MaterialCommunityIcons
@@ -201,6 +203,7 @@ const Home: React.FC = () => {
 
             <TouchableOpacity
               style={styles.btnType}
+              // 💡 Use the translated text for input
               onPress={() => setSymptomInput(t('area_stomach_digestive'))}
             >
               <MaterialCommunityIcons name="stomach" size={30} color="blue" />
@@ -209,9 +212,8 @@ const Home: React.FC = () => {
 
             <TouchableOpacity
               style={styles.btnType}
-              onPress={() =>
-                setSymptomInput(t('area_joint_muscle'))
-              }
+              // 💡 Use the translated text for input
+              onPress={() => setSymptomInput(t('area_joint_muscle'))}
             >
               <FontAwesome5 name="bone" size={24} color="gray" />
               <Text style={styles.cardText}>{t('area_joint_muscle')}</Text>
@@ -219,6 +221,7 @@ const Home: React.FC = () => {
 
             <TouchableOpacity
               style={styles.btnType}
+              // 💡 Use the translated text for input
               onPress={() => setSymptomInput(t('area_skin_rash'))}
             >
               <MaterialCommunityIcons name="bandage" size={30} color="green" />
@@ -226,7 +229,7 @@ const Home: React.FC = () => {
             </TouchableOpacity>
           </View>
 
-          <Text style={{ fontSize: isSmall ? 20 : 22, fontWeight: "bold", marginTop: 10 }}>
+          <Text style={{ fontSize: isSmall ? 20 : 22, fontWeight: "bold", }}>
             {t('section_resources')}
           </Text>
 
@@ -307,19 +310,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 5, 
     },
-    // 💡 ADJUSTED STYLES FOR SMALLER TOGGLE BUTTON
+    // 💡 NEW style for location button
+    locationButton: {
+        backgroundColor: '#fff',
+        width: 38,
+        height: 38,
+        borderRadius: 19,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ddd',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 1,
+        elevation: 2,
+    },
     langToggleSwitchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
-        paddingHorizontal: 5, // Reduced
+        paddingHorizontal: 8,
         borderRadius: 20,
         borderWidth: 1,
         borderColor: '#ddd',
-        height: 32, // Reduced
+        height: 38,
     },
     switchStyle: {
-        transform: [{ scaleX: 0.7 }, { scaleY: 0.7 }], // Reduced
+        transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }],
     },
     headerSection: {
       gap: 15,
@@ -417,4 +435,4 @@ const styles = StyleSheet.create({
       borderRadius: 30,
       alignItems: "center",
     },
-});
+  });

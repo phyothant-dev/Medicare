@@ -2,13 +2,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from 'react';
 import {
-    Dimensions,
-    Modal,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 // Get screen width for responsive modal size
@@ -37,14 +37,14 @@ const SymptomAnalysisModal: React.FC<SymptomAnalysisModalProps> = ({
           
           {/* Header */}
           <View style={styles.modalHeader}>
-            <Text style={styles.modalTitle}>🧠 AI Analysis Report</Text>
+            <Text style={styles.modalTitle}>AI Analysis Report</Text>
             <TouchableOpacity onPress={onClose} activeOpacity={0.7}>
               <Ionicons name="close-circle" size={28} color="#999" />
             </TouchableOpacity>
           </View>
 
           {/* Body - Scrollable Content */}
-          <ScrollView style={styles.modalBody}>
+          <ScrollView style={styles.modalBody} showsVerticalScrollIndicator={false}>
             <Text style={styles.modalText}>
               {analysisText || "No analysis data available."}
             </Text>
@@ -55,7 +55,7 @@ const SymptomAnalysisModal: React.FC<SymptomAnalysisModalProps> = ({
             style={styles.modalButton}
             onPress={onClose}
           >
-            <Text style={styles.modalButtonText}>Acknowledge & Close</Text>
+            <Text style={styles.modalButtonText}>Done</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     modalView: {
       backgroundColor: "white",
       borderRadius: 20,
-      padding: 25,
+      padding: 20,
       alignItems: "stretch",
       shadowColor: "#000",
       shadowOffset: {

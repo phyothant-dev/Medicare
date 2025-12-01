@@ -1,9 +1,10 @@
 import axios from "axios";
 
 // NOTE: Your key is exposed here. In a real app, load this from a secure .env file.
-const OPENROUTER_API_KEY = "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"; 
+const OPENROUTER_API_KEY = ""; 
 
-export async function getHFResponse(prompt:string) {
+export async function getHFResponse(prompt) {
+  console.log("Sending prompt to OpenRouter:", prompt);
   try {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
@@ -38,7 +39,7 @@ export async function getHFResponse(prompt:string) {
     
     return generatedText;
 
-  } catch (error : any) {
+  } catch (error) {
     // If the error has a response object, display the error message from the API
     const errorMessage = error.response?.data?.error?.message || error.message;
     console.error("OpenRouter API Error:", errorMessage);

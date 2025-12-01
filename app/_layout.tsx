@@ -6,11 +6,11 @@ export default function RootLayout() {
   return (
     <LanguageProvider>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index"/>
-        <Stack.Screen name="home" />
-        <Stack.Screen name="immunity" />
-        <Stack.Screen name="foodgroups" />
-        <Stack.Screen name="incompatible-food" />
+        {/* Keep the index (splash/login) screen as a standalone stack screen */}
+        <Stack.Screen name="index" />
+
+        {/* Use a grouped `(tabs)` layout for the rest of the app screens */}
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </LanguageProvider>
   );

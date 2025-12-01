@@ -1,7 +1,7 @@
 {
   "title": "Medicare",
   "subtitle": "ဒီနေ့ ဘယ်လိုခံစားနေရပါသလဲ။ ရောဂါလက္ခဏာ စစ်ဆေးကြည့်ရအောင်။",
-  "placeholder_symptoms": "သင်၏ ရောဂါလက္ခဏာများကို စတင်ရိုက်ထည့်ပါ",
+  "placeholder_symptoms": "သင်၏ ရောဂါလက္ခဏာများကို ရိုက်ထည့်ပါ။",
   "button_start_analysis": "ရောဂါလက္ခဏာ စစ်ဆေးခြင်း စတင်ရန်",
   "section_quick_checkup": "အမြန် စစ်ဆေးရမည့် နေရာများ",
   "area_head_neck": "ဦးခေါင်းနှင့် လည်ပင်း",
@@ -37,6 +37,15 @@
   "immunity_section_priority": "ရာသီအလိုက် ဦးစားပေးရန်များ",
   "immunity_description_priority": "ကိုယ်ခံအားကို အမြင့်ဆုံးမြှင့်တင်ရန် လက်ရှိရာသီအတွက် သတ်မှတ်ထားသော ဤအဆင့်များကို လိုက်နာပါ။",
   "immunity_section_general": "အထွေထွေ ကျန်းမာရေး",
-  "immunity_description_general": "တစ်နှစ်ပတ်လုံး ခိုင်မာသော ကိုယ်ခံအားစနစ်ကို ထောက်ပံ့ပေးသည့် အခြေခံ အလေ့အကျင့်များ။"
-  
+  "immunity_description_general": "တစ်နှစ်ပတ်လုံး ခိုင်မာသော ကိုယ်ခံအားစနစ်ကို ထောက်ပံ့ပေးသည့် အခြေခံ အလေ့အကျင့်များ။",  
+  "alert_location_denied": "တည်နေရာခွင့်ပြုချက် ငြင်းပယ်ထားပါသည်",
+  "loading_hospitals_text": "အနီးနားရှိ ဆေးရုံနှင့် ဆေးခန်းများ ရှာဖွေနေသည်...",
+  "no_hospitals_found": "အနီးနားတွင် ဆေးရုံ သို့မဟုတ် ဆေးခန်းများ မတွေ့ပါ",
+  "title_nearby_facilities": "အနီးနားရှိ ဆေးရုံနှင့် ဆေးခန်းများ",
+  "default_hospital_name": "ဆေးရုံ/ဆေးခန်း",
+  "unknown_type": "အမျိုးအစား မသိရှိရပါ",
+  "distance_unit": "ကီလိုမီတာ ကွာဝေး",
+  "map_popup_you_are_here": "သင်ရောက်ရှိနေသောနေရာ",
+  "map_popup_nearest_hospital": "အနီးဆုံး ဆေးရုံ",
+  "map_popup_hospital_clinic": "ဆေးရုံ/ဆေးခန်း"
 }
