@@ -1,9 +1,10 @@
 import axios from "axios";
 
 // NOTE: Your key is exposed here. In a real app, load this from a secure .env file.
-const OPENROUTER_API_KEY = "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"; 
+const OPENROUTER_API_KEY = ""; 
 
 export async function getHFResponse(prompt) {
+  console.log("Sending prompt to OpenRouter:", prompt);
   try {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
