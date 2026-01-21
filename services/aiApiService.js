@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// NOTE: Your key is exposed here. In a real app, load this from a secure .env file.
 const OPENROUTER_API_KEY = ""; 
 
 export async function getHFResponse(prompt) {
